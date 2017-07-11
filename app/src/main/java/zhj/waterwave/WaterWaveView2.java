@@ -10,6 +10,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 
 /**
@@ -105,9 +106,11 @@ public class WaterWaveView2 extends View {
     }
     //删除透明度已经为0的圆环
     private void deleteItem(){
-        for (int i = 0; i <mList.size() ; i++) {
-            if(mList.get(i).paint.getAlpha()==0){
-                mList.remove(i);
+        Iterator<Wave> listIter = mList.iterator();
+        while (listIter.hasNext()){
+            Wave wave = listIter.next();
+            if(wave.paint.getAlpha()==0){
+                listIter.remove();
             }
         }
     }
